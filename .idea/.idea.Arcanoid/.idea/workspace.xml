@@ -16,8 +16,9 @@
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Scripts/Ball.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Pad.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
+      <option value="$PROJECT_DIR$/Assets/Arkanoid.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1rrMToUrSQHYacbZs2aeK1Pdn9C" />
@@ -68,6 +69,9 @@
       <workItem from="1619729778745" duration="160000" />
       <workItem from="1619729964821" duration="48000" />
       <workItem from="1619825151494" duration="15723000" />
+      <workItem from="1619886872227" duration="16000" />
+      <workItem from="1620058329943" duration="1897000" />
+      <workItem from="1620156045602" duration="737000" />
     </task>
     <servers />
   </component>

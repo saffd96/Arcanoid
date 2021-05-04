@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Block : MonoBehaviour
@@ -7,12 +8,13 @@ public class Block : MonoBehaviour
 
     [SerializeField] private int numberOfHits;
     [SerializeField] private Sprite[] sprites;
-    [SerializeField] private Text scoreText;
 
     private int health;
-    private static int score;
+    private int score;
     private SpriteRenderer spriteRenderer;
 
+    public static event Action<int> OnBlockDestroyed;
+    
     #endregion
 
 
@@ -58,7 +60,7 @@ public class Block : MonoBehaviour
     private void UpdateScore()
     {
         score += numberOfHits * 100;
-        scoreText.text = $"Score: {score}";
+        OnBlockDestroyed?.Invoke(score);
     }
 
     #endregion

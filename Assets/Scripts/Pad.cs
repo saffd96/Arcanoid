@@ -17,10 +17,11 @@ public class Pad : MonoBehaviour
         Vector3 positionInWorld = Camera.main.ScreenToWorldPoint(positionInPixels);
         Vector3 padPosition = positionInWorld;
 
-        padPosition.y = transform.position.y;
+        var transform1 = transform;
+        padPosition.y = transform1.position.y;
         padPosition.z = 0;
 
-        transform.position = padPosition;
+        transform1.position = padPosition;
         
         //чтобы пад за границы экрана не выходил
         if (padPosition.x < -boundary)
