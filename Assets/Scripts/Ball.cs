@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class Ball : MonoBehaviour
 {
@@ -23,6 +25,14 @@ public class Ball : MonoBehaviour
         direction = new Vector2(Random.Range(-1f, 1f), 1f);
     }
 
+    private void Start()
+    {
+        if (GameManager.Instance.IsAutoPlay)
+        {
+            StartBall();
+        }
+    }
+
     private void Update()
     {
         if (!isStarted)
@@ -37,6 +47,11 @@ public class Ball : MonoBehaviour
                 StartBall();
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(transform.position, rb.velocity);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -55,7 +70,6 @@ public class Ball : MonoBehaviour
     private void StartBall()
     {
         Vector2 force = direction.normalized * speed;
-        print($"{force.ToString()}");
         rb.AddForce(force);
         isStarted = true;
     }

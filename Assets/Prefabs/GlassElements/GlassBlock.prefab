@@ -124,4 +124,4 @@ MonoBehaviour:
   numberOfHits: 1
   sprites:
   - {fileID: 21300000, guid: d4d51b817ea1ed348b0ecc08a4faf576, type: 3}
-  scoreText: {fileID: 0}
+  isDestroyable: 1

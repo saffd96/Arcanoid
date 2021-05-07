@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: cdd344d9866cf5b43b98402403bb96be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_DrawMode: 0
   m_Size: {x: 3.142857, y: 1}
   m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
+  m_SpriteTileMode: 1
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc7e409548009f449c6456b4769f913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boundary: 0
+  boundary: 7.3
 --- !u!68 &1270954924341836372
 EdgeCollider2D:
   m_ObjectHideFlags: 0

@@ -115,4 +115,4 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 234cefa2a394fe343890fa28a73617c9, type: 3}
   - {fileID: 21300000, guid: c5f5432f0defe964282c2248e7adf6c4, type: 3}
-  scoreText: {fileID: 0}
+  isDestroyable: 1

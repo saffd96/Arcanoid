@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Block : MonoBehaviour
@@ -8,13 +9,17 @@ public class Block : MonoBehaviour
 
     [SerializeField] private int numberOfHits;
     [SerializeField] private Sprite[] sprites;
+    [SerializeField] private bool isDestroyable;
 
-    private int health;
+    private int blockCount;
+    private int blockHealth;
     private int score;
+
     private SpriteRenderer spriteRenderer;
 
-    public static event Action<int> OnBlockDestroyed;
-    
+    public static event Action<int> OnDestroyed;
+    public static event Action OnCreated;
+
     #endregion
 
 
@@ -22,29 +27,43 @@ public class Block : MonoBehaviour
 
     private void Awake()
     {
-        health = numberOfHits;
+        blockHealth = numberOfHits;
         score = 0;
     }
 
     private void Start()
     {
+        if (isDestroyable)
+        {
+            OnCreated?.Invoke();
+        }
+
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         UpdateSprite();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        health--;
-
-        if (health > 0)
+        if (isDestroyable)
         {
-            UpdateSprite();
+            blockHealth--;
+            blockCount--;
 
-            return;
+            if (blockCount == 0)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+
+            if (blockHealth > 0)
+            {
+                UpdateSprite();
+
+                return;
+            }
+
+            Destroy(gameObject);
+            UpdateScore();
         }
-
-        Destroy(gameObject);
-        UpdateScore();
     }
 
     #endregion
@@ -54,13 +73,13 @@ public class Block : MonoBehaviour
 
     private void UpdateSprite()
     {
-        spriteRenderer.sprite = sprites[health - 1];
+        spriteRenderer.sprite = sprites[blockHealth - 1];
     }
 
     private void UpdateScore()
     {
         score += numberOfHits * 100;
-        OnBlockDestroyed?.Invoke(score);
+        OnDestroyed?.Invoke(score);
     }
 
     #endregion

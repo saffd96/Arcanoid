@@ -121,4 +121,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5b4f2f259eb65a34887daae89cf90ea4, type: 3}
   - {fileID: 21300000, guid: 67d9d1d4ae7de5841b1a260fc004140f, type: 3}
   - {fileID: 21300000, guid: 0b5da8c2ca675f74cb4cf63bf017a144, type: 3}
-  scoreText: {fileID: 0}
+  isDestroyable: 1

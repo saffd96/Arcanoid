@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4671443212975915346}
   - component: {fileID: 2440312015477960050}
   - component: {fileID: 2701680120951063149}
-  - component: {fileID: -1231108979713696462}
+  - component: {fileID: 4283179372886874686}
   m_Layer: 0
-  m_Name: StoneCircle
+  m_Name: GhostCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,9 +71,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 08d39a80b2ad9874aaa190a649f73d6d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: a1e45055190668545a785fdd399c6428, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7490196}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,8 +98,8 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &-1231108979713696462
+  m_Radius: 0.46
+--- !u!114 &4283179372886874686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,9 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ebe9aea9b59d0f4585b33cdbd145554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfHits: 3
+  numberOfHits: 2
   sprites:
-  - {fileID: 21300000, guid: de454f7698eec4c4a8cd459b657f1f4d, type: 3}
-  - {fileID: 21300000, guid: 363f6acb99d9d4040b9f88adb19a4ff7, type: 3}
-  - {fileID: 21300000, guid: 08d39a80b2ad9874aaa190a649f73d6d, type: 3}
+  - {fileID: 21300000, guid: a1e45055190668545a785fdd399c6428, type: 3}
+  - {fileID: 0}
   isDestroyable: 1
