@@ -98,10 +98,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 8081858643520073931}
+  bottomWall: {fileID: 0}
   speed: 300
   direction: {x: 5, y: 2}
   padTransform: {fileID: 0}
-  bottomWall: {fileID: 0}
+  ballOffset: 0
 --- !u!58 &8081858643520073928
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -111,7 +112,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 8081858643520073935}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: e7080f68dc8ee6045b7de07adf0546d5, type: 2}
+  m_Material: {fileID: 6200000, guid: cc8a3b25cdbc8904bac9d0e8c221cbc3, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

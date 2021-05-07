@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +7,7 @@ public class LevelManager : SingletonMonoBehaviour<LevelManager>
     #region Variables
 
     private int blockCount;
+    public static event Action OnTheEnd;
 
     #endregion
 
@@ -49,7 +48,14 @@ public class LevelManager : SingletonMonoBehaviour<LevelManager>
 
         if (blockCount == 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            else
+            {
+                OnTheEnd?.Invoke();
+            }
         }
     }
 

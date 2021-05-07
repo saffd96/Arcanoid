@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -11,14 +8,23 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     [Header("UI")]
     [SerializeField] private Text scoreLabel;
-    [SerializeField] private GameObject pauseVievGameObject;
+    [SerializeField] private Text gameOverText;
+    [SerializeField] private GameObject pauseViewGameObject;
+    [SerializeField] private GameObject gameOverViewGameObject;
+    [SerializeField] private GameObject livePrefab;
 
-    [FormerlySerializedAs("Autoplay")]
+    [Header("Other")]
+    [SerializeField] private GameObject canvasGameObject;
+    [Header("SET LIVES!!")]
+    [SerializeField] private int lives;
+
     [Header("Auto play")]
     [SerializeField] private bool isAutoPlay;
 
+    [SerializeField] private GameObject[] livesImages;
     private int totalScore;
     private bool isGamePaused;
+    private bool isGameEnded;
 
     #endregion
 
@@ -27,7 +33,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public bool IsGamePaused => isGamePaused;
     public bool IsAutoPlay => isAutoPlay;
-
+    public int Lives
+    {
+        get => lives;
+        set => lives = value;
+    }    
     #endregion
 
 
@@ -35,13 +45,18 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private void Start()
     {
-        pauseVievGameObject.SetActive(false);
+        pauseViewGameObject.SetActive(false);
+        gameOverViewGameObject.SetActive(false);
+
+        livesImages = new GameObject[lives];
         totalScore = 0;
+        CreateLivesImages();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        
+        if (Input.GetKeyDown(KeyCode.Escape)&&!isGameEnded)
         {
             PauseToggle();
         }
@@ -50,17 +65,36 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     private void OnEnable()
     {
         Block.OnDestroyed += OnBlockDestroyed;
+        Ball.OnBottomWallCollision += OnBottomWallCollision;
+        LevelManager.OnTheEnd += ShowEndScreen;
     }
 
     private void OnDisable()
     {
         Block.OnDestroyed -= OnBlockDestroyed;
+        Ball.OnBottomWallCollision -= OnBottomWallCollision;
+        LevelManager.OnTheEnd -= ShowEndScreen;
     }
 
     #endregion
 
 
     #region Events Handlers
+
+    private void OnBottomWallCollision()
+    {
+        if (Lives == 1)
+        {
+            ShowEndScreen();
+            Time.timeScale = 0f;
+            isGameEnded = true;
+        }
+        else
+        {
+            Lives--;
+            Destroy(livesImages[lives-1]);
+        }
+    }
 
     private void OnBlockDestroyed(int score)
     {
@@ -79,13 +113,28 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
         Time.timeScale = isGamePaused ? 0f : 1f;
 
-        pauseVievGameObject.SetActive(isGamePaused);
+        pauseViewGameObject.SetActive(isGamePaused);
+    }
+
+    private void ShowEndScreen()
+    {
+        gameOverText.text = $"Congrats\nYour score: {totalScore}";
+        gameOverViewGameObject.SetActive(true);
+    }
+
+    private void CreateLivesImages()
+    {
+        for (int i = 0; i < lives-1; i++)
+        {
+            livesImages[i] = Instantiate(livePrefab, new Vector3(10f + 60 * i, 10f), Quaternion.identity);
+            livesImages[i].transform.SetParent(canvasGameObject.transform, false);
+        }
     }
 
     #endregion
 
 
-    #region PublicMethods
+    #region Public Methods
 
     public void ExitGame()
     {
@@ -93,7 +142,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         Debug.LogError("QUIT");
     }
 
-    public void ContinueGame()
+    public void ContinueGame() //не хотел делать публичным PauseToggle()
     {
         PauseToggle();
         Debug.LogError("Continue");

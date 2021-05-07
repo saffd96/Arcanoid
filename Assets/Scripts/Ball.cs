@@ -1,19 +1,24 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class Ball : MonoBehaviour
 {
     #region Variables
-
+    [Header("Other")]
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Collider2D bottomWall;
+    [Header("Ball Settings")]
     [SerializeField] private float speed;
     [SerializeField] private Vector2 direction;
     [SerializeField] private Transform padTransform;
-    [SerializeField] private Collider2D bottomWall;
+    [Space]
+    [SerializeField] private float ballOffset; //смещение мяча относительно Пада по оси У
 
+    private float ballYPosition;
     private bool isStarted;
+    
+    public static event Action OnBottomWallCollision;
 
     #endregion
 
@@ -22,13 +27,16 @@ public class Ball : MonoBehaviour
 
     private void Awake()
     {
-        direction = new Vector2(Random.Range(-1f, 1f), 1f);
+        GetDirection();
     }
 
     private void Start()
     {
+        ballYPosition = padTransform.position.y + ballOffset;
+
         if (GameManager.Instance.IsAutoPlay)
         {
+            GetDirection();
             StartBall();
         }
     }
@@ -38,27 +46,28 @@ public class Ball : MonoBehaviour
         if (!isStarted)
         {
             Vector3 padPosition = padTransform.position;
-            var transform1 = transform;
-            padPosition.y = transform1.position.y;
-            transform1.position = padPosition;
+            var ballTransform = transform;
+            padPosition.y = ballYPosition;
+            ballTransform.position = padPosition;
+            
+            if (GameManager.Instance.IsAutoPlay)
+            {
+                ResetBall();
+            }
 
             if (Input.GetMouseButtonDown(0))
             {
-                StartBall();
+                ResetBall();
             }
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawRay(transform.position, rb.velocity);
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider == bottomWall)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            OnBottomWallCollision?.Invoke();
+            isStarted = false;
         }
     }
 
@@ -74,5 +83,16 @@ public class Ball : MonoBehaviour
         isStarted = true;
     }
 
+    private void GetDirection()
+    {
+        direction = new Vector2(Random.Range(-1f, 1f), 1f);
+    }
+
+    private void ResetBall()
+    {
+        GetDirection();
+        rb.velocity = Vector3.zero;
+        StartBall();
+    }
     #endregion
 }

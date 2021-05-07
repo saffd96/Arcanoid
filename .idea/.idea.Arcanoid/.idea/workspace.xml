@@ -19,18 +19,20 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2B293C9D-CA90-429F-93DD-F737F35A0FFC/29/0c69f8ac/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5406A456-CF73-4443-B3D0-2A7D123287F1/15/824f1f3e/Random.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5406A456-CF73-4443-B3D0-2A7D123287F1/50/6bd3f75c/Action.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2B293C9D-CA90-429F-93DD-F737F35A0FFC/3b/e63d1700/Component.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Arkanoid.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SingletonMonoBehaviour.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Ball.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ball.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Pad.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
     </changedPaths>
@@ -88,6 +90,7 @@
       <workItem from="1620156045602" duration="737000" />
       <workItem from="1620319281088" duration="4571000" />
       <workItem from="1620373473124" duration="11580000" />
+      <workItem from="1620407571103" duration="14193000" />
     </task>
     <servers />
   </component>
