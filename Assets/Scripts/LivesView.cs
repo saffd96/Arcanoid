@@ -56,8 +56,12 @@ public class LivesView : MonoBehaviour
                 CreateLife(i);
 
                 gameManager.CurrentLives++;
-
+                Debug.Log("Added 1 live");
                 break;
+            }
+            else
+            {
+                Debug.Log("Can't add Life");
             }
         }
     }
