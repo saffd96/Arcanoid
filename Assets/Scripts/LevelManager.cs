@@ -1,5 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class LevelManager : SingletonMonoBehaviour<LevelManager>
 {
@@ -43,7 +45,7 @@ public class LevelManager : SingletonMonoBehaviour<LevelManager>
 
     public void Restart()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
         gameObject.SetActive(false);
     }
 
@@ -56,7 +58,6 @@ public class LevelManager : SingletonMonoBehaviour<LevelManager>
     {
         blockCount++;
         Debug.Log(blockCount);
-
     }
 
     private void OnBlockDestroyed(int score)
@@ -66,9 +67,11 @@ public class LevelManager : SingletonMonoBehaviour<LevelManager>
 
         if (blockCount == 0)
         {
-            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1 < UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings)
+            if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings)
             {
-                UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+                Debug.Log($"Load Scene {SceneManager.GetActiveScene().buildIndex + 1}");
             }
             else
             {
