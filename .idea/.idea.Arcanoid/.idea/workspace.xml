@@ -24,17 +24,27 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5406A456-CF73-4443-B3D0-2A7D123287F1/50/6bd3f75c/Action.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5406A456-CF73-4443-B3D0-2A7D123287F1/e9/3c43d1a4/Action`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2B293C9D-CA90-429F-93DD-F737F35A0FFC/3a/4102dbe8/Sprite.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2B293C9D-CA90-429F-93DD-F737F35A0FFC/3b/e63d1700/Component.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Arkanoid.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SingletonMonoBehaviour.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Ball.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Pad.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
+      <option value="$PROJECT_DIR$/Assets/LivesView.cs" />
+      <option value="$PROJECT_DIR$/Assets/StartManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/StartManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PauseView.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/SceneManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GameOverView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/LivesView.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1rrMToUrSQHYacbZs2aeK1Pdn9C" />
@@ -50,9 +60,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="SolutionBuilderGeneralOptionsPageId" />
+    <property name="settings.editor.selected.configurable" value="ReSpellerSettingsId" />
   </component>
-  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
@@ -91,6 +101,8 @@
       <workItem from="1620319281088" duration="4571000" />
       <workItem from="1620373473124" duration="11580000" />
       <workItem from="1620407571103" duration="14193000" />
+      <workItem from="1620664248233" duration="1641000" />
+      <workItem from="1620897913196" duration="17204000" />
     </task>
     <servers />
   </component>

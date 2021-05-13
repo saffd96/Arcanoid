@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Pad : MonoBehaviour
 {
@@ -23,47 +22,29 @@ public class Pad : MonoBehaviour
     {
         if (GameManager.Instance.IsGamePaused)
         {
-            LockPad();
+            return;
+        }
+
+        Vector3 padPosition;
+
+        if (GameManager.Instance.IsAutoPlay)
+        {
+            padPosition = ball.transform.position;
+            padPosition.y = transform.position.y;
         }
         else
         {
-            if (GameManager.Instance.IsAutoPlay)
-            {
-                Vector3 padPosition = ball.transform.position;
-                padPosition.y = transform.position.y;
+            Vector3 positionInPixels = Input.mousePosition;
+            Vector3 positionInWorld = Camera.main.ScreenToWorldPoint(positionInPixels);
 
-                padPosition.x = Mathf.Clamp(padPosition.x, -boundary, boundary);
+            padPosition = positionInWorld;
 
-                transform.position = padPosition;
-            }
-            else
-            {
-                Vector3 positionInPixels = Input.mousePosition;
-                Vector3 positionInWorld = Camera.main.ScreenToWorldPoint(positionInPixels);
-
-                Vector3 padPosition = positionInWorld;
-
-                padPosition.y = transform.position.y;
-                padPosition.z = 0;
-
-                padPosition.x = Mathf.Clamp(padPosition.x, -boundary, boundary);
-
-                transform.position = padPosition;
-            }
+            padPosition.y = transform.position.y;
+            padPosition.z = 0;
         }
-    }
 
-    #endregion
-
-
-    #region PrivateRegions
-
-    private void LockPad()
-    {
-        if (GameManager.Instance.IsGamePaused)
-        {
-            Vector3 padPosition = transform.position;
-        }
+        padPosition.x = Mathf.Clamp(padPosition.x, -boundary, boundary);
+        transform.position = padPosition;
     }
 
     #endregion

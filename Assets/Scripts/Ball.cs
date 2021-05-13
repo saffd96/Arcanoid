@@ -5,30 +5,34 @@ using Random = UnityEngine.Random;
 public class Ball : MonoBehaviour
 {
     #region Variables
+
     [Header("Other")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Collider2D bottomWall;
+
     [Header("Ball Settings")]
     [SerializeField] private float speed;
-    [SerializeField] private Vector2 direction;
     [SerializeField] private Transform padTransform;
     [Space]
     [SerializeField] private float ballOffset; //смещение мяча относительно Пада по оси У
 
+    [Header("For DEV Only")]
+    [SerializeField] private Vector2 direction;
+
     private float ballYPosition;
     private bool isStarted;
-    
-    public static event Action OnBottomWallCollision;
+
+    #endregion
+
+
+    #region Events
+
+    public static event Action OnBottomWallCollided;
 
     #endregion
 
 
     #region Unity Lifecycle
-
-    private void Awake()
-    {
-        GetDirection();
-    }
 
     private void Start()
     {
@@ -36,7 +40,6 @@ public class Ball : MonoBehaviour
 
         if (GameManager.Instance.IsAutoPlay)
         {
-            GetDirection();
             StartBall();
         }
     }
@@ -49,7 +52,7 @@ public class Ball : MonoBehaviour
             var ballTransform = transform;
             padPosition.y = ballYPosition;
             ballTransform.position = padPosition;
-            
+
             if (GameManager.Instance.IsAutoPlay)
             {
                 ResetBall();
@@ -66,7 +69,7 @@ public class Ball : MonoBehaviour
     {
         if (collision.collider == bottomWall)
         {
-            OnBottomWallCollision?.Invoke();
+            OnBottomWallCollided?.Invoke();
             isStarted = false;
         }
     }
@@ -78,6 +81,7 @@ public class Ball : MonoBehaviour
 
     private void StartBall()
     {
+        GetDirection();
         Vector2 force = direction.normalized * speed;
         rb.AddForce(force);
         isStarted = true;
@@ -90,9 +94,9 @@ public class Ball : MonoBehaviour
 
     private void ResetBall()
     {
-        GetDirection();
         rb.velocity = Vector3.zero;
         StartBall();
     }
+
     #endregion
 }

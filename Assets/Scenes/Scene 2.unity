@@ -6721,12 +6721,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1309864425}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1312674667 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 807287052264603329, guid: 23903b7a29c7c18488adff880a3c095f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1487874371261582093}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1322594521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6917,17 +6911,17 @@ PrefabInstance:
     - target: {fileID: 1838902342864620899, guid: ad068d20a78babb4b8758a58d89c09f9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.2563145
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1838902342864620899, guid: ad068d20a78babb4b8758a58d89c09f9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.27286816
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1838902342864620899, guid: ad068d20a78babb4b8758a58d89c09f9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.027553
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1838902342864620899, guid: ad068d20a78babb4b8758a58d89c09f9,
         type: 3}
@@ -6964,45 +6958,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1838902342864620900, guid: ad068d20a78babb4b8758a58d89c09f9,
-        type: 3}
-      propertyPath: lives
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1838902342864620900, guid: ad068d20a78babb4b8758a58d89c09f9,
-        type: 3}
-      propertyPath: isAutoPlay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1838902342864620900, guid: ad068d20a78babb4b8758a58d89c09f9,
-        type: 3}
-      propertyPath: thingsToDisable.Array.data[0]
-      value: 
-      objectReference: {fileID: 1427883790}
-    - target: {fileID: 1838902342864620900, guid: ad068d20a78babb4b8758a58d89c09f9,
-        type: 3}
-      propertyPath: thingsToDisable.Array.data[1]
-      value: 
-      objectReference: {fileID: 1312674667}
     - target: {fileID: 1838902342864620901, guid: ad068d20a78babb4b8758a58d89c09f9,
         type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 1838902344298539891, guid: ad068d20a78babb4b8758a58d89c09f9,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3905974045399362320, guid: ad068d20a78babb4b8758a58d89c09f9,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3905974045399362320, guid: ad068d20a78babb4b8758a58d89c09f9,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad068d20a78babb4b8758a58d89c09f9, type: 3}
@@ -7331,12 +7290,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3244515121833239961, guid: 35336c8e69e7ebf478ff59ed1b70816b,
     type: 3}
   m_PrefabInstance: {fileID: 1399139927}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1427883790 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8081858643520073935, guid: 6046d3af40bbb4b458ba25a766e8c21c,
-    type: 3}
-  m_PrefabInstance: {fileID: 8081858643082880117}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1440392877
 PrefabInstance:
@@ -11131,17 +11084,17 @@ PrefabInstance:
     - target: {fileID: 9039662662100768907, guid: a2199dbf4a538c14c8fe929113922599,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.019413142
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9039662662100768907, guid: a2199dbf4a538c14c8fe929113922599,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.8423622
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9039662662100768907, guid: a2199dbf4a538c14c8fe929113922599,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.43635395
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9039662662100768907, guid: a2199dbf4a538c14c8fe929113922599,
         type: 3}

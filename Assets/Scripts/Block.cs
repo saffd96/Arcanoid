@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Block : MonoBehaviour
 {
@@ -10,11 +10,15 @@ public class Block : MonoBehaviour
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private bool isDestroyable;
 
-    private int blockCount;
     private int blockHealth;
     private int score;
 
     private SpriteRenderer spriteRenderer;
+
+    #endregion
+
+
+    #region Events
 
     public static event Action<int> OnDestroyed;
     public static event Action OnCreated;
@@ -32,13 +36,13 @@ public class Block : MonoBehaviour
 
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        UpdateSprite();
+
         if (isDestroyable)
         {
             OnCreated?.Invoke();
         }
-
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        UpdateSprite();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -46,12 +50,6 @@ public class Block : MonoBehaviour
         if (isDestroyable)
         {
             blockHealth--;
-            blockCount--;
-
-            if (blockCount == 0)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
 
             if (blockHealth > 0)
             {
@@ -62,6 +60,8 @@ public class Block : MonoBehaviour
 
             Destroy(gameObject);
             UpdateScore();
+            OnDestroyed?.Invoke(score);
+
         }
     }
 
@@ -78,7 +78,6 @@ public class Block : MonoBehaviour
     private void UpdateScore()
     {
         score += numberOfHits * 100;
-        OnDestroyed?.Invoke(score);
     }
 
     #endregion

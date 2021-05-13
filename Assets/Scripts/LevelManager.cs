@@ -1,23 +1,23 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelManager : SingletonMonoBehaviour<LevelManager>
 {
     #region Variables
 
-    private int blockCount;
+    [SerializeField] private int blockCount;
+
+    #endregion
+
+
+    #region Events
+
     public static event Action OnTheEnd;
 
     #endregion
 
 
-    #region PrivateMethods
-
-    private void Start()
-    {
-        Debug.Log(blockCount); //почему-то показыватся не верное значение. хотя все работает нормально О_О
-    }
+    #region Unity lifecycle
 
     private void OnEnable()
     {
@@ -34,11 +34,29 @@ public class LevelManager : SingletonMonoBehaviour<LevelManager>
     #endregion
 
 
+    #region Public methods
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void Restart()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        gameObject.SetActive(false);
+    }
+
+    #endregion
+
+
     #region Event Handlers
 
     private void OnBlockCreated()
     {
         blockCount++;
+        Debug.Log(blockCount);
+
     }
 
     private void OnBlockDestroyed(int score)
@@ -48,15 +66,25 @@ public class LevelManager : SingletonMonoBehaviour<LevelManager>
 
         if (blockCount == 0)
         {
-            if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings)
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1 < UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
             }
             else
             {
                 OnTheEnd?.Invoke();
             }
         }
+    }
+
+    #endregion
+
+
+    #region Public methods
+
+    public void ResetBlockCount()
+    {
+        blockCount = 0;
     }
 
     #endregion

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
@@ -8,21 +7,21 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     [Header("UI")]
     [SerializeField] private Text scoreLabel;
-    [SerializeField] private Text gameOverText;
-    [SerializeField] private GameObject pauseViewGameObject;
-    [SerializeField] private GameObject gameOverViewGameObject;
-    [SerializeField] private GameObject livePrefab;
+    [SerializeField] private GameOverView gameOverView;
+    [SerializeField] private LivesView livesView;
+    [SerializeField] private PauseView pauseView;
 
-    [Header("Other")]
-    [SerializeField] private GameObject canvasGameObject;
     [Header("SET LIVES!!")]
     [SerializeField] private int lives;
 
     [Header("Auto play")]
     [SerializeField] private bool isAutoPlay;
 
-    [SerializeField] private GameObject[] livesImages;
-    private int totalScore;
+    [Header("For DEV")]
+    [SerializeField] private int totalScore;
+    [SerializeField] private int maxLives;
+    [SerializeField] private int currentLives;
+
     private bool isGamePaused;
     private bool isGameEnded;
 
@@ -31,59 +30,92 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     #region Properties
 
-    public bool IsGamePaused => isGamePaused;
-    public bool IsAutoPlay => isAutoPlay;
-    public int Lives
+    public bool IsGamePaused
     {
-        get => lives;
-        set => lives = value;
-    }    
+        get => isGamePaused;
+        set => isGamePaused = value;
+    }
+    public bool IsAutoPlay => isAutoPlay;
+    public int CurrentLives
+    {
+        get => currentLives;
+        set => currentLives = value;
+    }
+
+    public int MaxLives
+    {
+        get => maxLives;
+        set => maxLives = value;
+    }
+
+    public int TotalScore { get; private set; }
+
     #endregion
 
 
     #region UnityLifecycle
 
-    private void Start()
-    {
-        pauseViewGameObject.SetActive(false);
-        gameOverViewGameObject.SetActive(false);
-
-        livesImages = new GameObject[lives];
-        totalScore = 0;
-        CreateLivesImages();
-    }
-
-    private void Update()
-    {
-        
-        if (Input.GetKeyDown(KeyCode.Escape)&&!isGameEnded)
-        {
-            PauseToggle();
-        }
-    }
-
     private void OnEnable()
     {
         Block.OnDestroyed += OnBlockDestroyed;
-        Ball.OnBottomWallCollision += OnBottomWallCollision;
+        Ball.OnBottomWallCollided += BottomWallCollided;
         LevelManager.OnTheEnd += ShowEndScreen;
     }
 
     private void OnDisable()
     {
         Block.OnDestroyed -= OnBlockDestroyed;
-        Ball.OnBottomWallCollision -= OnBottomWallCollision;
+        Ball.OnBottomWallCollided -= BottomWallCollided;
         LevelManager.OnTheEnd -= ShowEndScreen;
+    }
+
+    private void Start()
+    {
+        ResetGame();
+        Debug.Log($"{CurrentLives}, {maxLives}");
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !isGameEnded)
+        {
+            pauseView.PauseToggle();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && !isGameEnded)
+        {
+            if (CurrentLives != MaxLives)
+            {
+                livesView.AddLive();
+                Debug.Log("F Pressed");
+            }
+        }
     }
 
     #endregion
 
 
+    public void ResetGame()
+    {
+        maxLives = lives;
+        Debug.Log(maxLives);
+        currentLives = maxLives;
+        TotalScore = totalScore = 0;
+        
+
+        gameOverView.SetUnactive();
+        pauseView.SetUnactive();
+        livesView.CreateLivesImages();
+        scoreLabel.text = $"Score: {TotalScore.ToString()}";
+        Debug.Log("Game resetted");
+    }
+
+
     #region Events Handlers
 
-    private void OnBottomWallCollision()
+    private void BottomWallCollided()
     {
-        if (Lives == 1)
+        if (CurrentLives == 1)
         {
             ShowEndScreen();
             Time.timeScale = 0f;
@@ -91,15 +123,17 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         }
         else
         {
-            Lives--;
-            Destroy(livesImages[lives-1]);
+            CurrentLives--;
         }
+
+        Debug.Log($"{CurrentLives}, {maxLives}");
     }
 
     private void OnBlockDestroyed(int score)
     {
-        totalScore += score;
-        scoreLabel.text = $"Score: {totalScore.ToString()}";
+        TotalScore = totalScore += score;
+        scoreLabel.text = $"Score: {TotalScore.ToString()}";
+        Debug.Log("Block Destroyed");
     }
 
     #endregion
@@ -107,45 +141,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     #region Private Methods
 
-    private void PauseToggle()
-    {
-        isGamePaused = !isGamePaused;
-
-        Time.timeScale = isGamePaused ? 0f : 1f;
-
-        pauseViewGameObject.SetActive(isGamePaused);
-    }
-
     private void ShowEndScreen()
     {
-        gameOverText.text = $"Congrats\nYour score: {totalScore}";
-        gameOverViewGameObject.SetActive(true);
-    }
-
-    private void CreateLivesImages()
-    {
-        for (int i = 0; i < lives-1; i++)
-        {
-            livesImages[i] = Instantiate(livePrefab, new Vector3(10f + 60 * i, 10f), Quaternion.identity);
-            livesImages[i].transform.SetParent(canvasGameObject.transform, false);
-        }
-    }
-
-    #endregion
-
-
-    #region Public Methods
-
-    public void ExitGame()
-    {
-        Application.Quit();
-        Debug.LogError("QUIT");
-    }
-
-    public void ContinueGame() //не хотел делать публичным PauseToggle()
-    {
-        PauseToggle();
-        Debug.LogError("Continue");
+        gameOverView.SetTotalScore(TotalScore);
+        gameOverView.SetActive();
     }
 
     #endregion
