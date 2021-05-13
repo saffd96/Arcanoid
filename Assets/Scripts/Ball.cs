@@ -77,7 +77,7 @@ public class Ball : MonoBehaviour
     #endregion
 
 
-    #region Privarte Methods
+    #region Private Methods
 
     private void StartBall()
     {

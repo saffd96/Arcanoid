@@ -33,19 +33,19 @@
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Arkanoid.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SingletonMonoBehaviour.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Ball.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Pad.cs" />
       <option value="$PROJECT_DIR$/Assets/LivesView.cs" />
       <option value="$PROJECT_DIR$/Assets/StartManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/StartManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PauseView.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SceneManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ScenesManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GameOverView.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/LivesView.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ball.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GameOverView.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1rrMToUrSQHYacbZs2aeK1Pdn9C" />
@@ -106,7 +106,7 @@
       <workItem from="1620897913196" duration="17204000" />
       <workItem from="1620921720321" duration="938000" />
       <workItem from="1620923037890" duration="115000" />
-      <workItem from="1620923195681" duration="2687000" />
+      <workItem from="1620923195681" duration="3114000" />
     </task>
     <servers />
   </component>

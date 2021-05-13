@@ -9,25 +9,24 @@ public class GameOverView : MonoBehaviour
     [SerializeField] private GameManager gameManager;
 
     #endregion
-    
-    
+
+
     #region Public methods
 
     public void SetUnactive()
     {
         gameObject.SetActive(false);
     }
-    
+
     public void SetTotalScore(int totalScore)
     {
         gameOverText.text = $"Congrats\nYour score: {totalScore}";
     }
 
-    #endregion
-
-
     public void SetActive()
     {
         gameObject.SetActive(true);
     }
+
+    #endregion
 }

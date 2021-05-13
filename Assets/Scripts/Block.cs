@@ -60,7 +60,6 @@ public class Block : MonoBehaviour
             Destroy(gameObject);
             UpdateScore();
             OnDestroyed?.Invoke(score);
-
         }
     }
 

@@ -95,13 +95,14 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     #endregion
 
 
+    #region Public methods
+
     public void ResetGame()
     {
         maxLives = lives;
         Debug.Log(maxLives);
         currentLives = maxLives;
         TotalScore = totalScore = 0;
-        
 
         gameOverView.SetUnactive();
         pauseView.SetUnactive();
@@ -109,6 +110,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         scoreLabel.text = $"Score: {TotalScore.ToString()}";
         Debug.Log("Game resetted");
     }
+
+    #endregion
 
 
     #region Events Handlers

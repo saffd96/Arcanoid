@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class LevelManager : SingletonMonoBehaviour<LevelManager>
 {
     #region Variables
@@ -49,6 +48,11 @@ public class LevelManager : SingletonMonoBehaviour<LevelManager>
         gameObject.SetActive(false);
     }
 
+    public void ResetBlockCount()
+    {
+        blockCount = 0;
+    }
+
     #endregion
 
 
@@ -78,16 +82,6 @@ public class LevelManager : SingletonMonoBehaviour<LevelManager>
                 OnTheEnd?.Invoke();
             }
         }
-    }
-
-    #endregion
-
-
-    #region Public methods
-
-    public void ResetBlockCount()
-    {
-        blockCount = 0;
     }
 
     #endregion

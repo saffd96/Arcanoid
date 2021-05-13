@@ -27,6 +27,7 @@ public class LivesView : MonoBehaviour
     {
         Ball.OnBottomWallCollided -= BallLost;
     }
+
     private void Start()
     {
         //livesImages = new List<GameObject>(gameManager.MaxLives);  из этого ничего не работает почему-то(
@@ -57,6 +58,7 @@ public class LivesView : MonoBehaviour
 
                 gameManager.CurrentLives++;
                 Debug.Log("Added 1 live");
+
                 break;
             }
             else
@@ -65,7 +67,7 @@ public class LivesView : MonoBehaviour
             }
         }
     }
-    
+
     #endregion
 
 
