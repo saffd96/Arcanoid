@@ -2151,7 +2151,7 @@ PrefabInstance:
     - target: {fileID: 2487513125487381256, guid: 41c4b8cb6f2466749b37b43445c8349a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.32
+      value: -5.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487513125487381256, guid: 41c4b8cb6f2466749b37b43445c8349a,
         type: 3}
@@ -2279,7 +2279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4899492217937605618, guid: ad068d20a78babb4b8758a58d89c09f9,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 183852623}
     m_RemovedComponents: []

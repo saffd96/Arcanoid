@@ -56,10 +56,8 @@
       <option value="$PROJECT_DIR$/Assets/PickUpLive.cs" />
       <option value="$PROJECT_DIR$/Assets/PickUpLiveRemove.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/LivesView.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/BasePickUp.cs" />
       <option value="$PROJECT_DIR$/Assets/PickUpMultiBall.cs" />
       <option value="$PROJECT_DIR$/Assets/PickUpMagneticBall.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Ball.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpSpeed.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpScore.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpPadScale.cs" />
@@ -67,12 +65,15 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpLive.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpBallScale.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpMultiBall.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameOverView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/WonScreen.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ScenesManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/RandomPickUpTable.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ball.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpExplosiveBall.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/BasePickUp.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1rrMToUrSQHYacbZs2aeK1Pdn9C" />
@@ -141,6 +142,8 @@
       <workItem from="1621522325875" duration="764000" />
       <workItem from="1621542114509" duration="421000" />
       <workItem from="1621673885689" duration="42483000" />
+      <workItem from="1621865909853" duration="1145000" />
+      <workItem from="1621867717148" duration="858000" />
     </task>
     <servers />
   </component>

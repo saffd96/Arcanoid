@@ -23,6 +23,7 @@ public abstract class BasePickUp : MonoBehaviour
     {
         if (other.gameObject.CompareTag(Tags.Pad))
         {
+            Debug.Log(gameObject.name);
             ApplyEffect();
             Destroy(gameObject);
             OnDestroyed?.Invoke(Score);
