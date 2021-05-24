@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - FxTemporaire
+  - Block
+  - Pad
+  - Ball
+  - BottomWall
+  - PickUp
   layers:
   - Default
   - TransparentFX
@@ -13,12 +19,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Block
+  - BottomWall
+  - Ball
+  - Pad
+  - ImmuneBlock
+  - PickUp
   - 
   - 
   - 

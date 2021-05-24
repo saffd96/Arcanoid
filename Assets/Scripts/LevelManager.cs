@@ -61,13 +61,11 @@ public class LevelManager : SingletonMonoBehaviour<LevelManager>
     private void OnBlockCreated()
     {
         blockCount++;
-        Debug.Log(blockCount);
     }
 
     private void OnBlockDestroyed(int score)
     {
         blockCount--;
-        Debug.Log(blockCount);
 
         if (blockCount == 0)
         {

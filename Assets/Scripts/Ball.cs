@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,12 +11,17 @@ public class Ball : MonoBehaviour
     [Header("Other")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Collider2D bottomWall;
+    [SerializeField] private GameObject ballPrefab;
 
     [Header("Ball Settings")]
     [SerializeField] private float speed;
     [SerializeField] private Transform padTransform;
     [Space]
-    [SerializeField] private float ballOffset; //смещение мяча относительно Пада по оси У
+    [SerializeField] private float ballOffset;
+
+    [Header("Speed")]
+    [SerializeField] private float maxSpeed;
+    [SerializeField] private float minSpeed;
 
     [Header("For DEV Only")]
     [SerializeField] private Vector2 direction;
@@ -34,13 +41,32 @@ public class Ball : MonoBehaviour
 
     #region Unity Lifecycle
 
+    private void OnEnable()
+    {
+        PickUpSpeed.OnCapture += ChangeSpeed;
+        PickUpBallScale.OnCapture += ChangeScale;
+        PickUpMultiBall.OnCapture += CreateMultiBalls;
+    }
+
+    private void OnDisable()
+    {
+        PickUpSpeed.OnCapture -= ChangeSpeed;
+        PickUpBallScale.OnCapture -= ChangeScale;
+        PickUpMultiBall.OnCapture -= CreateMultiBalls;
+    }
+
     private void Start()
     {
-        ballYPosition = padTransform.position.y + ballOffset;
+        var balls = FindObjectsOfType<Ball>();
 
-        if (GameManager.Instance.IsAutoPlay)
+        foreach (var ball in balls)
         {
-            StartBall();
+            ballYPosition = padTransform.position.y + ballOffset;
+
+            if (GameManager.Instance.IsAutoPlay)
+            {
+                StartBall();
+            }
         }
     }
 
@@ -48,29 +74,34 @@ public class Ball : MonoBehaviour
     {
         if (!isStarted)
         {
-            Vector3 padPosition = padTransform.position;
-            var ballTransform = transform;
-            padPosition.y = ballYPosition;
-            ballTransform.position = padPosition;
+                Vector3 padPosition = padTransform.position;
+                var ballTransform = transform;
+                padPosition.y = ballYPosition;
+                ballTransform.position = padPosition;
 
-            if (GameManager.Instance.IsAutoPlay)
-            {
-                ResetBall();
-            }
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                ResetBall();
-            }
+                if (GameManager.Instance.IsAutoPlay || Input.GetMouseButtonDown(0))
+                {
+                    ResetBall();
+                } 
         }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        var Balls = FindObjectsOfType<Ball>();
+
         if (collision.collider == bottomWall)
         {
-            OnBottomWallCollided?.Invoke();
-            isStarted = false;
+            if (Balls.Length != 1)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                OnBottomWallCollided?.Invoke();
+                isStarted = false;
+            }
         }
     }
 
@@ -83,7 +114,7 @@ public class Ball : MonoBehaviour
     {
         GetDirection();
         Vector2 force = direction.normalized * speed;
-        rb.AddForce(force);
+        rb.velocity = force;
         isStarted = true;
     }
 
@@ -97,6 +128,48 @@ public class Ball : MonoBehaviour
         rb.velocity = Vector3.zero;
         StartBall();
     }
+
+    private void ChangeSpeed(float speedFactor)
+    {
+        var balls = FindObjectsOfType<Ball>();
+
+        foreach (var ball in balls)
+        {
+            var newVelosityLenght = Mathf.Clamp(ball.rb.velocity.magnitude * speedFactor, minSpeed, maxSpeed);
+
+            ball.rb.velocity = ball.rb.velocity.normalized * newVelosityLenght;
+        }
+    }
+
+    private void ChangeScale(float scaleFactor)
+    {
+        var balls = FindObjectsOfType<Ball>();
+
+        foreach (var ball in balls)
+        {
+            ball.transform.localScale *= scaleFactor;
+        }
+    }
+
+    private void CreateMultiBalls(int ballsCount) //создается череcчур много во время поднятия 2-ого пикапа
+    {
+        var balls = FindObjectsOfType<Ball>();
+
+        foreach (var ball in balls)
+        {
+            for (int i = 0; i < ballsCount; i++)
+            {
+                GameObject spawnedball =
+                        Instantiate(ballPrefab, ball.transform.position,
+                            Quaternion.identity); // почему не могу создать как Ball?
+
+                var ballComponent = spawnedball.GetComponent<Ball>();
+
+                ballComponent.StartBall();
+            }
+        }
+    }
+    
 
     #endregion
 }

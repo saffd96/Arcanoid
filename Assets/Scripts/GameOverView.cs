@@ -20,7 +20,7 @@ public class GameOverView : MonoBehaviour
 
     public void SetTotalScore(int totalScore)
     {
-        gameOverText.text = $"Congrats\nYour score: {totalScore}";
+        gameOverText.text = $"You lose\nYour score: {totalScore}";
     }
 
     public void SetActive()

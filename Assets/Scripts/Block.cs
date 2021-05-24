@@ -5,9 +5,16 @@ public class Block : MonoBehaviour
 {
     #region Variables
 
+    [Header("Base settings")]
     [SerializeField] private int numberOfHits;
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private bool isDestroyable;
+    [SerializeField] private GameObject destroyParticlePrefab;
+    [SerializeField] private GameObject hitEffect;
+    
+    [Header("Explosive block")]
+    [SerializeField] private bool isExplosive;
+    [SerializeField] private float explosiveRadius;
 
     private int blockHealth;
     private int score;
@@ -20,6 +27,8 @@ public class Block : MonoBehaviour
     #region Events
 
     public static event Action<int> OnDestroyed;
+    public static event Action<Vector3> OnDestroyedPosition;
+
     public static event Action OnCreated;
 
     #endregion
@@ -46,27 +55,76 @@ public class Block : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isDestroyable)
-        {
-            blockHealth--;
+        var contact = collision.GetContact(0);
 
-            if (blockHealth > 0)
-            {
-                UpdateSprite();
+        Instantiate(hitEffect, contact.point, Quaternion.identity);
 
-                return;
-            }
+        DestroyBlock();
+    }
 
-            Destroy(gameObject);
-            UpdateScore();
-            OnDestroyed?.Invoke(score);
-        }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosiveRadius);
     }
 
     #endregion
 
 
     #region Private Methods
+
+    private void DestroyBlock()
+    {
+
+        if (!isDestroyable)
+        {
+            return;
+        }
+
+        blockHealth--;
+
+        if (blockHealth > 0)
+        {
+            UpdateSprite();
+
+            return;
+        }
+
+        Instantiate(destroyParticlePrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+        UpdateScore();
+        Explode();
+
+        OnDestroyed?.Invoke(score);
+        OnDestroyedPosition?.Invoke(transform.position);
+
+    }
+
+    private void Explode()
+    {
+        if (!isExplosive)
+        {
+            return;
+        }
+
+        LayerMask mask = LayerMask.GetMask(Masks.Block);
+        var objectsInRadius = Physics2D.OverlapCircleAll(transform.position, explosiveRadius, mask);
+
+        foreach (var objInRadius in objectsInRadius)
+        {
+            var block = objInRadius.gameObject.GetComponent<Block>();
+
+            if (block == null)
+            {
+                Destroy(objInRadius.gameObject);
+            }
+            else
+            {
+                block.blockHealth = 1;
+                block.DestroyBlock();
+            }
+        }
+    }
 
     private void UpdateSprite()
     {

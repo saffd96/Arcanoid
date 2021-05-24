@@ -10,11 +10,11 @@ public class ScenesManager : MonoBehaviour
         Debug.LogError("QUIT");
     }
 
-    public void StartGame()
+    public void LoadScene(int index)
     {
         Time.timeScale = 1f;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
-        Debug.LogError("Load Scene 1");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(index);
+        Debug.LogError($"Load Scene {index}");
     }
 
     public void ToMenu()

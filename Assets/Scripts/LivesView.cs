@@ -6,7 +6,6 @@ public class LivesView : MonoBehaviour
 
     [SerializeField] private GameObject livePrefab;
     [SerializeField] private GameObject canvasGameObject;
-    [SerializeField] private GameManager gameManager;
 
     [Header("For DEV Only")]
     [SerializeField] private GameObject[] livesImages;
@@ -16,33 +15,13 @@ public class LivesView : MonoBehaviour
     #endregion
 
 
-    #region Unity lifecycle
-
-    private void OnEnable()
-    {
-        Ball.OnBottomWallCollided += BallLost;
-    }
-
-    private void OnDisable()
-    {
-        Ball.OnBottomWallCollided -= BallLost;
-    }
-
-    private void Start()
-    {
-        //livesImages = new List<GameObject>(gameManager.MaxLives);  из этого ничего не работает почему-то(
-        //livesImages = new GameObject[gameManager.CurrentLives-1];  из этого ничего не работает почему-то(
-        livesImages = new GameObject[3]; // пришлось создавать вручную(
-    }
-
-    #endregion
-
-
     #region Public methods
 
-    public void CreateLivesImages()
+    public void Setup(int livesCount)
     {
-        for (int i = 0; i < gameManager.MaxLives; i++)
+        livesImages = new GameObject[livesCount];
+
+        for (int i = 0; i < livesImages.Length; i++)
         {
             CreateLife(i);
         }
@@ -56,15 +35,18 @@ public class LivesView : MonoBehaviour
             {
                 CreateLife(i);
 
-                gameManager.CurrentLives++;
                 Debug.Log("Added 1 live");
 
                 break;
             }
-            else
-            {
-                Debug.Log("Can't add Life");
-            }
+        }
+    }
+
+    public void RemoveLife(int currentLifes)
+    {
+        if (currentLifes != 0)
+        {
+            Destroy(livesImages[currentLifes]);
         }
     }
 
@@ -72,14 +54,6 @@ public class LivesView : MonoBehaviour
 
 
     #region Private methods
-
-    private void BallLost()
-    {
-        if (gameManager.CurrentLives != 0)
-        {
-            Destroy(livesImages[gameManager.CurrentLives - 1]);
-        }
-    }
 
     private void CreateLife(int i)
     {

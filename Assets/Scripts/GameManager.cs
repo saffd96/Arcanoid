@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : SingletonMonoBehaviour<GameManager>
+[RequireComponent(typeof(LivesView))] public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     #region Variables
 
     [Header("UI")]
     [SerializeField] private Text scoreLabel;
     [SerializeField] private GameOverView gameOverView;
+    [SerializeField] private WonScreen winScreen;
     [SerializeField] private LivesView livesView;
     [SerializeField] private PauseView pauseView;
 
@@ -39,15 +40,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public int CurrentLives
     {
         get => currentLives;
-        set => currentLives = value;
+        private set => currentLives = value;
     }
-
     public int MaxLives
     {
         get => maxLives;
-        set => maxLives = value;
     }
-
     public int TotalScore { get; private set; }
 
     #endregion
@@ -57,16 +55,22 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private void OnEnable()
     {
-        Block.OnDestroyed += OnBlockDestroyed;
-        Ball.OnBottomWallCollided += BottomWallCollided;
-        LevelManager.OnTheEnd += ShowEndScreen;
+        Block.OnDestroyed += UpdateScore;
+        Ball.OnBottomWallCollided += LiveRemoved;
+        LevelManager.OnTheEnd += ShowWinScreen;
+        BasePickUp.OnDestroyed += UpdateScore;
+        PickUpLive.OnCapture += AddLive;
+        PickUpLiveRemove.OnCapture += LiveRemoved;
     }
 
     private void OnDisable()
     {
-        Block.OnDestroyed -= OnBlockDestroyed;
-        Ball.OnBottomWallCollided -= BottomWallCollided;
-        LevelManager.OnTheEnd -= ShowEndScreen;
+        Block.OnDestroyed -= UpdateScore;
+        Ball.OnBottomWallCollided -= LiveRemoved;
+        LevelManager.OnTheEnd -= ShowWinScreen;
+        BasePickUp.OnDestroyed -= UpdateScore;
+        PickUpLive.OnCapture -= AddLive;
+        PickUpLiveRemove.OnCapture -= LiveRemoved;
     }
 
     private void Start()
@@ -84,11 +88,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
         if (Input.GetKeyDown(KeyCode.F) && !isGameEnded)
         {
-            if (CurrentLives != MaxLives)
-            {
-                livesView.AddLive();
-                Debug.Log("F Pressed");
-            }
+            AddLive();
         }
     }
 
@@ -100,15 +100,14 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void ResetGame()
     {
         maxLives = lives;
-        Debug.Log(maxLives);
         currentLives = maxLives;
         TotalScore = totalScore = 0;
 
         gameOverView.SetUnactive();
         pauseView.SetUnactive();
-        livesView.CreateLivesImages();
-        scoreLabel.text = $"Score: {TotalScore.ToString()}";
-        Debug.Log("Game resetted");
+        livesView.Setup(maxLives);
+        scoreLabel.text = $"Score: {TotalScore}";
+        Debug.Log("ResetGame");
     }
 
     #endregion
@@ -116,7 +115,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     #region Events Handlers
 
-    private void BottomWallCollided()
+    private void LiveRemoved() //почему-то работает только на первой сцене
     {
         if (CurrentLives == 1)
         {
@@ -127,16 +126,16 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         else
         {
             CurrentLives--;
+            livesView.RemoveLife(CurrentLives);
         }
 
         Debug.Log($"{CurrentLives}, {maxLives}");
     }
 
-    private void OnBlockDestroyed(int score)
+    private void UpdateScore(int score)
     {
         TotalScore = totalScore += score;
-        scoreLabel.text = $"Score: {TotalScore.ToString()}";
-        Debug.Log("Block Destroyed");
+        scoreLabel.text = $"Score: {TotalScore}";
     }
 
     #endregion
@@ -144,10 +143,25 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     #region Private Methods
 
+    private void AddLive()
+    {
+        if (CurrentLives != MaxLives)
+        {
+            CurrentLives++;
+            livesView.AddLive();
+        }
+    }
+
     private void ShowEndScreen()
     {
         gameOverView.SetTotalScore(TotalScore);
         gameOverView.SetActive();
+    }
+
+    private void ShowWinScreen()
+    {
+        winScreen.SetTotalScore(TotalScore);
+        winScreen.SetActive();
     }
 
     #endregion

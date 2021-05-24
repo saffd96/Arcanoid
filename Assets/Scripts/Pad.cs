@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Pad : MonoBehaviour
 {
@@ -10,9 +11,17 @@ public class Pad : MonoBehaviour
 
     #endregion
 
-
     #region Unity Lifecycle
 
+    private void OnEnable()
+    {
+        PickUpPadScale.OnCapture += ChangeScale;
+    }
+
+    private void OnDisable()
+    {
+        PickUpPadScale.OnCapture -= ChangeScale;
+    }
     private void Start()
     {
         ball = FindObjectOfType<Ball>();
@@ -47,5 +56,13 @@ public class Pad : MonoBehaviour
         transform.position = padPosition;
     }
 
+    private void ChangeScale(float scaleFactor)
+    {
+        var newX = transform.localScale.x * scaleFactor;
+        var newScale = new Vector3(newX, transform.localScale.y);
+        transform.localScale = newScale;
+        Debug.Log("ChangeScale");
+    }
+    
     #endregion
 }

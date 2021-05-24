@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2487513125487381256}
-  - component: {fileID: 2397325333941828861}
-  m_Layer: 0
+  - component: {fileID: 6485066398557425772}
+  - component: {fileID: 1485909530}
+  m_Layer: 9
   m_Name: BottomWall
-  m_TagString: Untagged
+  m_TagString: BottomWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,8 +32,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &2397325333941828861
-EdgeCollider2D:
+--- !u!61 &6485066398557425772
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -45,11 +46,27 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.1013658, y: 1}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: -1.58, y: 0.5}
-  - {x: 0, y: 0.4}
-  - {x: 1.58, y: 0.5}
-  - {x: 1.58, y: -0.5}
-  - {x: -1.58, y: -0.5}
-  - {x: -1.58, y: 0.5}
+--- !u!114 &1485909530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2487513125487381257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9157a99270640b469cc0469bae82111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
