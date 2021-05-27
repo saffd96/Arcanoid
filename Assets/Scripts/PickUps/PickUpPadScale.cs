@@ -5,19 +5,7 @@ public class PickUpPadScale : BasePickUp
 {
     #region Variables
 
-    [SerializeField] private GameObject pickUpVFX;
     [SerializeField] private float scaleFactor;
-    [SerializeField] private int pickUpPoints;
-
-    #endregion
-
-
-    #region Unity Lifecycle
-
-    private void Start()
-    {
-        Score = pickUpPoints;
-    }
 
     #endregion
 
@@ -33,7 +21,6 @@ public class PickUpPadScale : BasePickUp
 
     protected override void ApplyEffect()
     {
-        Instantiate(pickUpVFX, transform.position, Quaternion.identity);
         OnCapture?.Invoke(scaleFactor);
     }
 

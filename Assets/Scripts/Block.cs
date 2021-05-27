@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Block : MonoBehaviour
 {
@@ -9,9 +10,17 @@ public class Block : MonoBehaviour
     [SerializeField] private int numberOfHits;
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private bool isDestroyable;
-    [SerializeField] private GameObject destroyParticlePrefab;
+
+    [Header("PickUp Settings")]
+    [SerializeField] private GameObject[] pickUpPrefabs;
+
+    [Range(1, 100)]
+    [SerializeField] private int chanceToDrop = 10;
+
+    [Header("Vfx")]
     [SerializeField] private GameObject hitEffect;
-    
+    [SerializeField] private GameObject destroyBlockParticlePrefab;
+
     [Header("Explosive block")]
     [SerializeField] private bool isExplosive;
     [SerializeField] private float explosiveRadius;
@@ -75,10 +84,15 @@ public class Block : MonoBehaviour
 
     private void DestroyBlock()
     {
-
         if (!isDestroyable)
         {
             return;
+        }
+
+        if (IsNeedToCreatePickUp())
+        {
+            int index = Random.Range(0, pickUpPrefabs.Length);
+            Instantiate(pickUpPrefabs[index], transform.position, Quaternion.identity);
         }
 
         blockHealth--;
@@ -90,14 +104,13 @@ public class Block : MonoBehaviour
             return;
         }
 
-        Instantiate(destroyParticlePrefab, transform.position, Quaternion.identity);
+        Instantiate(destroyBlockParticlePrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
         UpdateScore();
         Explode();
 
         OnDestroyed?.Invoke(score);
         OnDestroyedPosition?.Invoke(transform.position);
-
     }
 
     private void Explode()
@@ -134,6 +147,19 @@ public class Block : MonoBehaviour
     private void UpdateScore()
     {
         score += numberOfHits * 100;
+    }
+
+    private bool IsNeedToCreatePickUp()
+    {
+        if (pickUpPrefabs == null || pickUpPrefabs.Length == 0)
+        {
+            return false;
+        }
+
+        int chance = Random.Range(1, 101);
+        {
+            return chance <= chanceToDrop;
+        }
     }
 
     #endregion

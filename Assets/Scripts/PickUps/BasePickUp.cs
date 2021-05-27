@@ -1,18 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-public abstract class BasePickUp : MonoBehaviour
+public class BasePickUp : MonoBehaviour
 {
     #region Variables
 
-    protected int Score;
-
-    #endregion
-
-
-    #region Events
-
-    public static event Action<int> OnDestroyed;
+    [SerializeField] private GameObject pickUpVFX;
+    [SerializeField] private int score;
 
     #endregion
 
@@ -26,7 +20,6 @@ public abstract class BasePickUp : MonoBehaviour
             Debug.Log(gameObject.name);
             ApplyEffect();
             Destroy(gameObject);
-            OnDestroyed?.Invoke(Score);
         }
     }
 
@@ -35,7 +28,11 @@ public abstract class BasePickUp : MonoBehaviour
 
     #region Private Methods
 
-    protected abstract void ApplyEffect();
+    protected virtual void ApplyEffect()
+    {
+        Instantiate(pickUpVFX, transform.position, Quaternion.identity);
+        GameManager.Instance.UpdateScore(score);
+    }
 
     #endregion
 }

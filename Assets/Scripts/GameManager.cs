@@ -58,7 +58,6 @@ using UnityEngine.UI;
         Block.OnDestroyed += UpdateScore;
         Ball.OnBottomWallCollided += LiveRemoved;
         LevelManager.OnTheEnd += ShowWinScreen;
-        BasePickUp.OnDestroyed += UpdateScore;
         PickUpLive.OnCapture += AddLive;
         PickUpLiveRemove.OnCapture += LiveRemoved;
     }
@@ -68,7 +67,6 @@ using UnityEngine.UI;
         Block.OnDestroyed -= UpdateScore;
         Ball.OnBottomWallCollided -= LiveRemoved;
         LevelManager.OnTheEnd -= ShowWinScreen;
-        BasePickUp.OnDestroyed -= UpdateScore;
         PickUpLive.OnCapture -= AddLive;
         PickUpLiveRemove.OnCapture -= LiveRemoved;
     }
@@ -132,7 +130,7 @@ using UnityEngine.UI;
         Debug.Log($"{CurrentLives}, {maxLives}");
     }
 
-    private void UpdateScore(int score)
+    public void UpdateScore(int score)
     {
         TotalScore = totalScore += score;
         scoreLabel.text = $"Score: {TotalScore}";

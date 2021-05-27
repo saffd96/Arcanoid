@@ -48,6 +48,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -128,12 +129,21 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8fa854f0b60b6a24faba6c53b1e1aaaa, type: 3}
   - {fileID: 21300000, guid: a9ce825ffe19ec64a9d003bbc6e57c4c, type: 3}
   isDestroyable: 1
-  destroyParticlePrefab: {fileID: 5869005748803770461, guid: c8bb44215d6d0e049bdbcab203b9ab45,
-    type: 3}
+  pickUpPrefabs:
+  - {fileID: 3125819330760686037, guid: 1db0f20d3914ff741bfc5d73973b36ba, type: 3}
+  - {fileID: 3125819330760686037, guid: 5856c98ea4f8bc8459e4239df3dab6c2, type: 3}
+  - {fileID: 3125819330760686037, guid: 3753b1103c9f51540a2bd966a9715fd9, type: 3}
+  - {fileID: 3125819330760686037, guid: c5e8138fed06c414abef0dbd141346f3, type: 3}
+  - {fileID: 3125819330760686037, guid: e2786e178a54b1d4d8c80c84d9beb911, type: 3}
+  - {fileID: 3125819330760686037, guid: 71745553205aef546a8f212f124a5229, type: 3}
+  - {fileID: 3125819330760686037, guid: 05d0a598893cffd408e7dd726f280dc6, type: 3}
+  - {fileID: 3125819330760686037, guid: 6d967c20edccbdd4aadc8613b61c7dda, type: 3}
+  - {fileID: 3125819330760686037, guid: 3118212ebd713f4448633d30519b5f25, type: 3}
+  - {fileID: 3125819330760686037, guid: f79e272fd94f55a449d429283fac8cce, type: 3}
+  - {fileID: 3125819330760686037, guid: 192d2e2a58516f64591b6ffc52c9cd93, type: 3}
+  chanceToDrop: 10
   hitEffect: {fileID: 8456339785071900615, guid: 3f1488879291d6448adfcc107f762783,
     type: 3}
-  pickUpPrefab: {fileID: 3125819330760686037, guid: 6d967c20edccbdd4aadc8613b61c7dda,
-    type: 3}
+  destroyBlockParticlePrefab: {fileID: 0}
   isExplosive: 0
   explosiveRadius: 0
-  explosiveVfx: {fileID: 0}

@@ -35,6 +35,8 @@ public class RandomPickUpTable : SingletonMonoBehaviour<RandomPickUpTable>
 
     private void GeneratePickUp(Vector3 blockPosition)
     {
+        total = 0;
+
         foreach (var pickUp in rateTable)
         {
             total += pickUp;
