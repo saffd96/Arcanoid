@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BasePickUp : MonoBehaviour
 {
@@ -30,7 +29,10 @@ public class BasePickUp : MonoBehaviour
 
     protected virtual void ApplyEffect()
     {
-        Instantiate(pickUpVFX, transform.position, Quaternion.identity);
+        if (pickUpVFX!=null)
+        {
+            Instantiate(pickUpVFX, transform.position, Quaternion.identity);
+        }
         GameManager.Instance.UpdateScore(score);
     }
 

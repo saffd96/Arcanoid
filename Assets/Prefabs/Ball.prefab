@@ -50,6 +50,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -104,7 +105,7 @@ MonoBehaviour:
   padTransform: {fileID: 0}
   ballOffset: 0.5
   maxSpeed: 70
-  minSpeed: 1
+  minSpeed: 20
   direction: {x: 5, y: 2}
 --- !u!58 &8081858643520073928
 CircleCollider2D:
@@ -159,6 +160,7 @@ TrailRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

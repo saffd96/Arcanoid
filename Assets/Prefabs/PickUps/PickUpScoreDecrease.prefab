@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3125819330760687144}
   - component: {fileID: 3125819330760686039}
   - component: {fileID: 3125819330760686038}
+  - component: {fileID: 8564793450943832723}
   m_Layer: 13
   m_Name: PickUpScoreDecrease
   m_TagString: PickUp
@@ -131,3 +132,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.55, y: 0.55}
   m_EdgeRadius: 0
+--- !u!114 &8564793450943832723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3125819330760686037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ee399a0ab548759d207b4ff9afa7bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickUpVFX: {fileID: 5371133328609841029, guid: 92340e0535d62ec488f97801334c5902,
+    type: 3}
+  score: -5000

@@ -131,6 +131,7 @@ MonoBehaviour:
   chanceToDrop: 10
   hitEffect: {fileID: 8456339785071900615, guid: 3f1488879291d6448adfcc107f762783,
     type: 3}
-  destroyBlockParticlePrefab: {fileID: 0}
+  destroyBlockParticlePrefab: {fileID: 7642422811181142929, guid: b8277b02f73893a48a256c2a58cfe18c,
+    type: 3}
   isExplosive: 1
   explosiveRadius: 1.5

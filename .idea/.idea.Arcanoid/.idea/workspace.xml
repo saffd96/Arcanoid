@@ -60,7 +60,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/GameOverView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/WonScreen.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ScenesManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Ball.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpExplosiveBall.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/RandomPickUpTable.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
@@ -70,9 +69,10 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpMultiBall.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpPadScale.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpScore.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpSpeed.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/BasePickUp.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpSpeed.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ball.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1rrMToUrSQHYacbZs2aeK1Pdn9C" />
@@ -144,7 +144,7 @@
       <workItem from="1621865909853" duration="1145000" />
       <workItem from="1621867717148" duration="858000" />
       <workItem from="1621873254597" duration="1776000" />
-      <workItem from="1622145791730" duration="2241000" />
+      <workItem from="1622145791730" duration="3057000" />
     </task>
     <servers />
   </component>

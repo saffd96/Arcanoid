@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -43,14 +41,12 @@ public class Ball : MonoBehaviour
 
     private void OnEnable()
     {
-        PickUpSpeed.OnCapture += ChangeSpeed;
         PickUpBallScale.OnCapture += ChangeScale;
         PickUpMultiBall.OnCapture += CreateMultiBalls;
     }
 
     private void OnDisable()
     {
-        PickUpSpeed.OnCapture -= ChangeSpeed;
         PickUpBallScale.OnCapture -= ChangeScale;
         PickUpMultiBall.OnCapture -= CreateMultiBalls;
     }
@@ -74,17 +70,16 @@ public class Ball : MonoBehaviour
     {
         if (!isStarted)
         {
-                Vector3 padPosition = padTransform.position;
-                var ballTransform = transform;
-                padPosition.y = ballYPosition;
-                ballTransform.position = padPosition;
+            Vector3 padPosition = padTransform.position;
+            var ballTransform = transform;
+            padPosition.y = ballYPosition;
+            ballTransform.position = padPosition;
 
-                if (GameManager.Instance.IsAutoPlay || Input.GetMouseButtonDown(0))
-                {
-                    ResetBall();
-                } 
+            if (GameManager.Instance.IsAutoPlay || Input.GetMouseButtonDown(0))
+            {
+                ResetBall();
+            }
         }
-        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -102,6 +97,23 @@ public class Ball : MonoBehaviour
                 OnBottomWallCollided?.Invoke();
                 isStarted = false;
             }
+        }
+    }
+
+    #endregion
+
+
+    #region Public Methods
+
+    public void ChangeSpeed(float speedFactor)
+    {
+        var balls = FindObjectsOfType<Ball>();
+
+        foreach (var ball in balls)
+        {
+            var newVelosityLenght = Mathf.Clamp(ball.rb.velocity.magnitude * speedFactor, minSpeed, maxSpeed);
+
+            ball.rb.velocity = ball.rb.velocity.normalized * newVelosityLenght;
         }
     }
 
@@ -127,18 +139,6 @@ public class Ball : MonoBehaviour
     {
         rb.velocity = Vector3.zero;
         StartBall();
-    }
-
-    private void ChangeSpeed(float speedFactor)
-    {
-        var balls = FindObjectsOfType<Ball>();
-
-        foreach (var ball in balls)
-        {
-            var newVelosityLenght = Mathf.Clamp(ball.rb.velocity.magnitude * speedFactor, minSpeed, maxSpeed);
-
-            ball.rb.velocity = ball.rb.velocity.normalized * newVelosityLenght;
-        }
     }
 
     private void ChangeScale(float scaleFactor)
@@ -169,7 +169,6 @@ public class Ball : MonoBehaviour
             }
         }
     }
-    
 
     #endregion
 }

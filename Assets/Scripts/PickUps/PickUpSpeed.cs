@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PickUpSpeed : BasePickUp
 {
@@ -10,18 +9,16 @@ public class PickUpSpeed : BasePickUp
     #endregion
 
 
-    #region Events
-
-    public static event Action<float> OnCapture;
-
-    #endregion
-
-
     #region Private Methods
 
     protected override void ApplyEffect()
     {
-        OnCapture?.Invoke(speedFactor);
+        var balls = FindObjectsOfType<Ball>();
+
+        foreach (var ball in balls)
+        {
+            ball.ChangeSpeed(speedFactor);
+        }
     }
 
     #endregion
