@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2631ea54-2184-4edd-a663-41dd8409aa5a" name="Default Changelist" comment="" />
+    <list default="true" id="2631ea54-2184-4edd-a663-41dd8409aa5a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/BallsHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/BallsHandler.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Arcanoid/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Arcanoid/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/RandomPickUpTable.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/RandomPickUpTable.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Scene 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Scene 1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ball.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ball.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BottomWall.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BottomWall.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameOverView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameOverView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pad.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pad.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PauseView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PauseView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickUps/BasePickUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PickUps/BasePickUp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpBallScale.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpBallScale.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpLive.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpLive.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpLiveRemove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpLiveRemove.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpMultiBall.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpMultiBall.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpPadScale.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpPadScale.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpSpeed.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpSpeed.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickUps/RandomPickUpTable.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickUps/RandomPickUpTable.cs.meta" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +63,6 @@
       <option value="$PROJECT_DIR$/Assets/LivesView.cs" />
       <option value="$PROJECT_DIR$/Assets/StartManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/StartManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/PauseView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SceneManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpTable.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" />
@@ -50,29 +71,31 @@
       <option value="$PROJECT_DIR$/Assets/PickUpSpeed.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/BallScalePickUp.cs" />
       <option value="$PROJECT_DIR$/Assets/PickUpPadScale.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Pad.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BottomWall.cs" />
       <option value="$PROJECT_DIR$/Assets/PickUpLive.cs" />
       <option value="$PROJECT_DIR$/Assets/PickUpLiveRemove.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/LivesView.cs" />
       <option value="$PROJECT_DIR$/Assets/PickUpMultiBall.cs" />
       <option value="$PROJECT_DIR$/Assets/PickUpMagneticBall.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GameOverView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/WonScreen.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ScenesManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpExplosiveBall.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/RandomPickUpTable.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpBallScale.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpScore.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PauseView.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GameOverView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpLive.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpLiveRemove.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpMultiBall.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/RandomPickUpTable.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Pad.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpPadScale.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpScore.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/BasePickUp.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpMultiBall.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpSpeed.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PickUps/PickUpBallScale.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BottomWall.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Ball.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BallsHandler.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1rrMToUrSQHYacbZs2aeK1Pdn9C" />
@@ -144,7 +167,9 @@
       <workItem from="1621865909853" duration="1145000" />
       <workItem from="1621867717148" duration="858000" />
       <workItem from="1621873254597" duration="1776000" />
-      <workItem from="1622145791730" duration="3057000" />
+      <workItem from="1622145791730" duration="3554000" />
+      <workItem from="1622282167420" duration="15558000" />
+      <workItem from="1622319786786" duration="1072000" />
     </task>
     <servers />
   </component>
@@ -153,6 +178,18 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>

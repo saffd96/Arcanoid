@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PickUpMultiBall : BasePickUp
 {
     #region Variables
 
-    [SerializeField] private int additionaBalls;
-
-    #endregion
-
-
-
-    #region Events
-
-    public static event Action<int> OnCapture;
+    [SerializeField] private int additionaBalls = 2;
 
     #endregion
 
@@ -24,7 +13,21 @@ public class PickUpMultiBall : BasePickUp
 
     protected override void ApplyEffect()
     {
-        OnCapture?.Invoke(additionaBalls);
+        BallsHandler.Instance.PerformActionWithBalls(CloneBall);
+    }
+
+    #endregion
+
+
+    #region Private Methods
+
+    private void CloneBall(Ball ball)
+    {
+        for (int i = 0; i < additionaBalls; i++)
+        {
+            var newBall = Instantiate(ball, ball.transform.position, ball.transform.rotation);
+            newBall.StartBall();
+        }
     }
 
     #endregion

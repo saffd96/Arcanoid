@@ -29,10 +29,11 @@ public class BasePickUp : MonoBehaviour
 
     protected virtual void ApplyEffect()
     {
-        if (pickUpVFX!=null)
+        if (pickUpVFX != null)
         {
             Instantiate(pickUpVFX, transform.position, Quaternion.identity);
         }
+
         GameManager.Instance.UpdateScore(score);
     }
 

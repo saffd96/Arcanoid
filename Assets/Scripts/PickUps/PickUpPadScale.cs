@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PickUpPadScale : BasePickUp
 {
@@ -10,18 +9,12 @@ public class PickUpPadScale : BasePickUp
     #endregion
 
 
-    #region Events
-
-    public static event Action<float> OnCapture;
-
-    #endregion
-
-
     #region Private Methods
 
     protected override void ApplyEffect()
     {
-        OnCapture?.Invoke(scaleFactor);
+        var pad = FindObjectOfType<Pad>();
+        pad.ChangeScale(scaleFactor);
     }
 
     #endregion

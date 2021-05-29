@@ -9,7 +9,6 @@ public class Ball : MonoBehaviour
     [Header("Other")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Collider2D bottomWall;
-    [SerializeField] private GameObject ballPrefab;
 
     [Header("Ball Settings")]
     [SerializeField] private float speed;
@@ -32,37 +31,27 @@ public class Ball : MonoBehaviour
 
     #region Events
 
-    public static event Action OnBottomWallCollided;
+    public static event Action<Ball> OnBottomWallCollided;
+    public static event Action<Ball> OnCreated;
+    public static event Action<Ball> OnDestroyed;
 
     #endregion
 
 
     #region Unity Lifecycle
 
-    private void OnEnable()
+    private void Awake()
     {
-        PickUpBallScale.OnCapture += ChangeScale;
-        PickUpMultiBall.OnCapture += CreateMultiBalls;
-    }
-
-    private void OnDisable()
-    {
-        PickUpBallScale.OnCapture -= ChangeScale;
-        PickUpMultiBall.OnCapture -= CreateMultiBalls;
+        OnCreated?.Invoke(this);
     }
 
     private void Start()
     {
-        var balls = FindObjectsOfType<Ball>();
+        ballYPosition = padTransform.position.y + ballOffset;
 
-        foreach (var ball in balls)
+        if (GameManager.Instance.IsAutoPlay)
         {
-            ballYPosition = padTransform.position.y + ballOffset;
-
-            if (GameManager.Instance.IsAutoPlay)
-            {
-                StartBall();
-            }
+            StartBall();
         }
     }
 
@@ -82,22 +71,14 @@ public class Ball : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        OnDestroyed?.Invoke(this);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        var Balls = FindObjectsOfType<Ball>();
-
-        if (collision.collider == bottomWall)
-        {
-            if (Balls.Length != 1)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                OnBottomWallCollided?.Invoke();
-                isStarted = false;
-            }
-        }
+        
     }
 
     #endregion
@@ -107,28 +88,28 @@ public class Ball : MonoBehaviour
 
     public void ChangeSpeed(float speedFactor)
     {
-        var balls = FindObjectsOfType<Ball>();
+        var newVelosityLenght = Mathf.Clamp(rb.velocity.magnitude * speedFactor, minSpeed, maxSpeed);
 
-        foreach (var ball in balls)
-        {
-            var newVelosityLenght = Mathf.Clamp(ball.rb.velocity.magnitude * speedFactor, minSpeed, maxSpeed);
-
-            ball.rb.velocity = ball.rb.velocity.normalized * newVelosityLenght;
-        }
+        rb.velocity = rb.velocity.normalized * newVelosityLenght;
     }
 
-    #endregion
+    public void ChangeScale(float scaleFactor)
+    {
+        transform.localScale *= scaleFactor;
+    }
 
-
-    #region Private Methods
-
-    private void StartBall()
+    public void StartBall()
     {
         GetDirection();
         Vector2 force = direction.normalized * speed;
         rb.velocity = force;
         isStarted = true;
     }
+
+    #endregion
+
+
+    #region Private Methods
 
     private void GetDirection()
     {
@@ -140,35 +121,5 @@ public class Ball : MonoBehaviour
         rb.velocity = Vector3.zero;
         StartBall();
     }
-
-    private void ChangeScale(float scaleFactor)
-    {
-        var balls = FindObjectsOfType<Ball>();
-
-        foreach (var ball in balls)
-        {
-            ball.transform.localScale *= scaleFactor;
-        }
-    }
-
-    private void CreateMultiBalls(int ballsCount) //создается череcчур много во время поднятия 2-ого пикапа
-    {
-        var balls = FindObjectsOfType<Ball>();
-
-        foreach (var ball in balls)
-        {
-            for (int i = 0; i < ballsCount; i++)
-            {
-                GameObject spawnedball =
-                        Instantiate(ballPrefab, ball.transform.position,
-                            Quaternion.identity); // почему не могу создать как Ball?
-
-                var ballComponent = spawnedball.GetComponent<Ball>();
-
-                ballComponent.StartBall();
-            }
-        }
-    }
-
     #endregion
 }

@@ -1,19 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PickUpBallScale : BasePickUp
 {
     #region Variables
 
     [SerializeField] private float scaleFactor;
-    
-    #endregion
-
-
-
-    #region Events
-
-    public static event Action<float> OnCapture;
 
     #endregion
 
@@ -22,7 +13,7 @@ public class PickUpBallScale : BasePickUp
 
     protected override void ApplyEffect()
     {
-        OnCapture?.Invoke(scaleFactor);
+        BallsHandler.Instance.PerformActionWithBalls(ball => ball.ChangeScale(scaleFactor));
     }
 
     #endregion

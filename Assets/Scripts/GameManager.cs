@@ -56,19 +56,13 @@ using UnityEngine.UI;
     private void OnEnable()
     {
         Block.OnDestroyed += UpdateScore;
-        Ball.OnBottomWallCollided += LiveRemoved;
         LevelManager.OnTheEnd += ShowWinScreen;
-        PickUpLive.OnCapture += AddLive;
-        PickUpLiveRemove.OnCapture += LiveRemoved;
     }
 
     private void OnDisable()
     {
         Block.OnDestroyed -= UpdateScore;
-        Ball.OnBottomWallCollided -= LiveRemoved;
         LevelManager.OnTheEnd -= ShowWinScreen;
-        PickUpLive.OnCapture -= AddLive;
-        PickUpLiveRemove.OnCapture -= LiveRemoved;
     }
 
     private void Start()
@@ -108,12 +102,7 @@ using UnityEngine.UI;
         Debug.Log("ResetGame");
     }
 
-    #endregion
-
-
-    #region Events Handlers
-
-    private void LiveRemoved() //почему-то работает только на первой сцене
+    public void RemoveLive() //почему-то работает только на первой сцене
     {
         if (CurrentLives == 1)
         {
@@ -129,19 +118,26 @@ using UnityEngine.UI;
 
         Debug.Log($"{CurrentLives}, {maxLives}");
     }
+    #endregion
+
+
+    #region Events Handlers
+
+    
 
     public void UpdateScore(int score)
     {
         TotalScore = totalScore += score;
+
+        if (TotalScore<0)
+        {
+            TotalScore = 0;
+        }
+        
         scoreLabel.text = $"Score: {TotalScore}";
     }
 
-    #endregion
-
-
-    #region Private Methods
-
-    private void AddLive()
+    public  void AddLive()
     {
         if (CurrentLives != MaxLives)
         {
@@ -149,6 +145,11 @@ using UnityEngine.UI;
             livesView.AddLive();
         }
     }
+    #endregion
+
+
+    #region Private Methods
+    
 
     private void ShowEndScreen()
     {

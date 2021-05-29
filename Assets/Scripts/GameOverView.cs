@@ -6,7 +6,6 @@ public class GameOverView : MonoBehaviour
     #region Variables
 
     [SerializeField] private Text gameOverText;
-    [SerializeField] private GameManager gameManager;
 
     #endregion
 

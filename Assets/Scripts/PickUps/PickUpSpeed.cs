@@ -13,12 +13,7 @@ public class PickUpSpeed : BasePickUp
 
     protected override void ApplyEffect()
     {
-        var balls = FindObjectsOfType<Ball>();
-
-        foreach (var ball in balls)
-        {
-            ball.ChangeSpeed(speedFactor);
-        }
+        BallsHandler.Instance.PerformActionWithBalls(ball => ball.ChangeSpeed(speedFactor));
     }
 
     #endregion

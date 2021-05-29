@@ -19,13 +19,7 @@ public class PauseView : MonoBehaviour
 
         gameObject.SetActive(gameManager.IsGamePaused);
     }
-
-    public void ContinueGame()
-    {
-        PauseToggle();
-        Debug.LogError("Continue");
-    }
-
+    
     public void SetUnactive()
     {
         gameObject.SetActive(false);
